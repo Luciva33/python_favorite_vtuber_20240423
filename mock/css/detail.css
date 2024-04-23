@@ -1,0 +1,12 @@
+.container {
+    text-align: center;
+}
+
+#character_top img {
+    width: 50%;
+}
+
+#character_top #character_name span {
+    display: block;
+    font-size: 1.0rem;
+}

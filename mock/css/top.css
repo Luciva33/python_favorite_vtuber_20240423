@@ -1,0 +1,23 @@
+.container {
+    text-align: center;
+}
+
+.flex_list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+
+.flex_list li {
+    width: 20%;
+}
+
+.flex_list li span {
+    display: block;
+}
+
+.schedule_character_thumbnail img {
+    border-radius: 50%;
+    border: 1px solid #000;
+    width: 50%;
+}
