@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お気に入り動画登録 | Favorite Vtuber</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/add-favorite-video.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>お気に入り動画登録</h1>
+        <p>登録したいYoutubeのURLを入力欄に貼り付け、<br>
+            「情報を取得」ボタンをクリックしてください。<br>
+            例）https://www.youtube.com/watch?v=pZekg05mwZM&pp=ygUG5paZ55CG</p>
+        <form action="#" method="post">
+            <input type="url" name="youtube_url" value="" placeholder="Youtube URL">
+            <input class="button" type="button" value="情報を取得">
+        </form>
+
+        <p>登録する動画に誤りがなければ「登録」ボタンをクリックしてください。<br>
+            登録に誤りがあれば、再度上部から登録したいYoutubeのURLを入力欄に貼り付け、<br>
+            「情報を取得」ボタンをクリックしてください。
+        </p>
+        <table>
+            <tr>
+                <th>タイトル</th>
+                <td>これを食べればお家の唐揚げが間違いなくこれになります。衣が違う【肉汁爆弾唐揚げ】</td>
+            </tr>
+            <tr>
+                <th>URL</th>
+                <td><a href="https://www.youtube.com/watch?v=pZekg05mwZM"
+                        target="_blank">https://www.youtube.com/watch?v=pZekg05mwZM</a></td>
+            </tr>
+            <tr>
+                <td colspan="2"><img src="/images/top/1.png" alt=""></td>
+            </tr>
+        </table>
+        <p><a class="button" href="/">登録</a></p>
+        <p><a class="button" href="/favorite-videos.html">お気に入り動画一覧へ戻る</a></p>
+    </div>
+</body>
+
+</html>

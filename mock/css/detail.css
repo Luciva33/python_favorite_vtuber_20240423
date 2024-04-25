@@ -10,3 +10,12 @@
     display: block;
     font-size: 1.0rem;
 }
+
+#character_data dl {
+    border: 1px solid #000;
+    display: flex;
+}
+
+#character_data dt {
+    border-right: 1px solid #000;
+}

@@ -1,0 +1,8 @@
+.container {
+    text-align: center;
+}
+
+input[type=text],
+input[type=password] {
+    border: 1px solid #000;
+}

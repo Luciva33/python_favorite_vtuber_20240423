@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お気に入り動画一覧 | Favorite Vtuber</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/register-character.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>お気に入り動画一覧</h1>
+        <p>登録したいVtuverのURLを入力欄に貼り付け、<br>
+            「情報を取得」ボタンをクリックしてください。<br>
+            例）https://hololive.hololivepro.com/talents/tokino-sora/</p>
+        <form action="#" method="post">
+            <input type="url" name="vtuber_url" value="" placeholder="Vtuver URL">
+            <input class="button" type="button" value="情報を取得">
+        </form>
+
+        <p>登録するVtuverに誤りがなければ「登録」ボタンをクリックしてください。<br>
+            登録に誤りがあれば、再度上部から登録したいVtuverのURLを入力欄に貼り付け、<br>
+            「情報を取得」ボタンをクリックしてください。
+        </p>
+        <table>
+            <tr>
+                <th>事務所</th>
+                <td>ホロライブ</td>
+            </tr>
+            <tr>
+                <th>Vtuber名</th>
+                <td>ときのそら（Sora Tokino）</td>
+            </tr>
+            <tr>
+                <td colspan="2"><img src="/images/top/1.png" alt=""></td>
+            </tr>
+        </table>
+        <p><a class="button" href="/">登録</a></p>
+    </div>
+</body>
+
+</html>

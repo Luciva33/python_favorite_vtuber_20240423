@@ -6,3 +6,12 @@ img {
     width: 940px;
     margin: 0 auto;
 }
+
+.button {
+    padding: 10px;
+    border-radius: 15px;
+    background: #f00;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block
+}
