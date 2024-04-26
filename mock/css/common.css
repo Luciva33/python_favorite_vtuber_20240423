@@ -15,3 +15,7 @@ img {
     text-decoration: none;
     display: inline-block
 }
+
+ul {
+    list-style: none;
+}
