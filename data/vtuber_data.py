@@ -5,7 +5,7 @@ from pathlib import Path # フォルダ操作モジュール
 import urllib   # url操作モジュール
 import time # 時間操作モジュール
 
-load_url = 'https://hololive.hololivepro.com/talents/roboco-san/'
+load_url = 'https://hololive.hololivepro.com/talents/todoroki-hajime/'
 res = requests.get(load_url)
 res.encoding = res.apparent_encoding
 soup = BeautifulSoup(res.text, 'html.parser')
@@ -14,18 +14,22 @@ name_ja = soup.select('.bg_box h1')
 name_en = soup.select('.bg_box h1 span')
 catch = soup.select('.catch')
 mp4 = soup.select('.txt video')
+mp4_gif = soup.select('.txt img')
 snsList = soup.select('.t_sns li a')
 recommendList = soup.select('.talent_youtube li a')
 
 print(''.join(name_ja[0].find_all(text=True, recursive=False)))
 print(name_en[0].get_text())
 print(catch[0].get_text())
-print(mp4[0].get('src'))
+if mp4:
+    print(mp4[0].get('src'))
+elif mp4_gif:
+    print(mp4_gif[0].get('src'))
 
 for sns in snsList:
     if 'https://twitter.com' in sns.get('href'):
         print(sns.get('href'))
-    if 'https://www.youtube.com/channel' in sns.get('href'):
+    if 'youtube' in sns.get('href'):
         print(sns.get('href'))
 
 for recommend in recommendList:
