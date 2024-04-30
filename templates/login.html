@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-<title>アカウント登録 | Favorite Vtuber</title>
+<title>ログイン | Favorite Vtuber</title>
 {% endblock title %}
 
 {% block cutomcss %}
@@ -12,8 +12,8 @@
 {% block content %}
 
 <body class="text-center">
-    <h1 class="h3 mb-3 font-weight-normal">アカウント登録</h1>
-    <p>アカウント登録済みの場合は<a href="{% url 'login' %}">こちら</a>からログインしてください。</p>
+    <h1 class="h3 mb-3 font-weight-normal">ログイン</h1>
+    <p>アカウント未登録の場合は<a href="{% url 'signup' %}">こちら</a>登録をお願いします。</p>
     <form class="form-signin" method="POST">{% csrf_token %}
         <label for="inputUserName" class="sr-only">User Name</label>
         <input type="text" id="inputUserName" class="form-control" placeholder="User Name" name="username" required
@@ -21,7 +21,7 @@
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
         <p class="error">{{ error }}</p>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">登録</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
     </form>
 </body>
 {% endblock content %}
