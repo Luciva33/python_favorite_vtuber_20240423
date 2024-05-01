@@ -48,24 +48,49 @@
                 </div>
             </div>
         </div>
+
+        {% if mVtuber.vtuber.recommended_video1 %}
         <div class="recommended_videos">
             <h2 class="h3 mb-3 font-weight-normal">Recommended Videos</h2>
             <ul class="recommended_video_list">
                 {% if mVtuber.vtuber.recommended_video1 %}
                 <li>
-                    <a href="https://www.youtube.com/watch?v=NT6Pf28eCgQ" target="_blank">
-                        <!-- <img src="https://img.youtube.com/vi/NT6Pf28eCgQ/maxresdefault.jpg" alt="Video 1 Thumbnail"> -->
+                    <a href="{{mVtuber.vtuber.recommended_video1}}" target="_blank">
+                        <img src="{{thumbnails.0 }}">
                     </a>
                 </li>
                 {% endif %}
+
                 {% if mVtuber.vtuber.recommended_video2 %}
-                <li><iframe src="{{ mVtuber.vtuber.recommended_video2 }}" frameborder="0" allowfullscreen></iframe>
+                <li>
+                    <a href="{{mVtuber.vtuber.recommended_video2}}" target="_blank">
+                        <img src="{{thumbnails.1 }}">
+                    </a>
                 </li>
                 {% endif %}
+
                 {% if mVtuber.vtuber.recommended_video3 %}
-                <li><iframe src="{{ mVtuber.vtuber.recommended_video3 }}" frameborder="0" allowfullscreen></iframe>
+                <li>
+                    <a href="{{mVtuber.vtuber.recommended_video3}}" target="_blank">
+                        <img src="{{thumbnails.2 }}">
+                    </a>
                 </li>
                 {% endif %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <div class="databox">
+            <h2 class="h3 mb-3 font-weight-normal">Data</h2>
+            <ul>
+                {% for mVtubersProfile in mVtubersProfiles %}
+                <li>
+                    <dl>
+                        <dt>{{ mVtubersProfile.title }}：</dt>
+                        <dd>{{ mVtubersProfile.content | safe }}</dd>
+                    </dl>
+                </li>
+                {% endfor %}
             </ul>
         </div>
 

@@ -29,6 +29,17 @@
     gap: 10px;
 }
 
-.recommended_video_list iframe {
-    aspect-ratio: 16 / 9;
+.databox ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    text-align: left;
+}
+
+.databox li {
+    border-bottom: 1px solid #000;
+}
+
+.databox dl {
+    display: flex;
 }

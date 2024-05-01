@@ -2,7 +2,7 @@ import re
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from .models import MVtubers, TFavoriteVtubers
+from .models import MVtubers, TFavoriteVtubers, MVtubersProfiles
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 
@@ -54,6 +54,8 @@ def detailCharacterfunc(request, pk):
     vtuber_instance = MVtubers.objects.get(id = pk)
     mVtuber = get_object_or_404(TFavoriteVtubers, user=request.user, vtuber=vtuber_instance)
 
+    mVtubersProfiles = MVtubersProfiles.objects.filter(vtuber = vtuber_instance)
+
     # mp4かgifか判定
     introduction_video_url = mVtuber.vtuber.introduction_video_url
     is_video = False
@@ -66,8 +68,13 @@ def detailCharacterfunc(request, pk):
         mVtuber.vtuber.recommended_video2,
         mVtuber.vtuber.recommended_video3
     ]
+    thumbnails = []
+    for url in video_urls:
+        if url:
+            thumbnail_url = generate_thumbnail(url)
+            thumbnails.append(thumbnail_url)
 
-    return render(request, 'detail-character.html', {'mVtuber' : mVtuber, 'is_video': is_video})
+    return render(request, 'detail-character.html', {'mVtuber' : mVtuber, 'is_video': is_video, 'thumbnails' : thumbnails, 'mVtubersProfiles' : mVtubersProfiles})
 
 # お気に入りキャラ登録
 @login_required
@@ -89,3 +96,9 @@ def registerCharacterConfirmfunc(request, pk):
     else:
         mVtuber = get_object_or_404(MVtubers, pk = pk)
         return render(request, 'register-character-confirm.html', {'mVtuber' : mVtuber})
+    
+# YouTubeの動画URLから動画IDを抽出し、サムネイルのURLを生成する関数
+def generate_thumbnail(video_url):
+    video_id = re.search(r"(?:\?v=|\/embed\/|\.be\/)([\w-]+)", video_url).group(1)
+    thumbnail_url = f"https://img.youtube.com/vi/{video_id}/maxresdefault.jpg"
+    return thumbnail_url
