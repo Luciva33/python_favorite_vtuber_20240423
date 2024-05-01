@@ -1,0 +1,31 @@
+{% extends 'base_login.html' %}
+{% load static %}
+
+{% block title %}
+<title>お気に入りVtuber登録 | Favorite Vtuber</title>
+{% endblock title %}
+
+{% block cutomcss %}
+<link rel="stylesheet" href="{% static '/css/register-character.css' %}">
+{% endblock cutomcss %}
+
+{% block content %}
+
+<body class="text-center">
+    <div class="container">
+        <h1 class="h3 mb-3 font-weight-normal">お気に入りVtuber登録</h1>
+        <p>お気に入りに追加するVtuberをクリックして選択してください</p>
+        <ul class="vt_list">
+            {% for mVtuber in mVtubers %}
+            <li>
+                <a href="{% url 'register-character-confirm' mVtuber.pk %}">
+                    <span class="img_wrap"><img src="{% static '/images/' %}{{ mVtuber.thumbnail_filename }}"></span>
+                    <span class="vt_name_ja">{{ mVtuber.name_ja }}</span>
+                    <span class="vt_name_en">{{ mVtuber.name_en }}</span>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+{% endblock content %}

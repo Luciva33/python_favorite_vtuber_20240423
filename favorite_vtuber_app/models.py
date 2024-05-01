@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # VTuber事務所
 class MOffices(models.Model):
@@ -63,18 +64,18 @@ class MFavoriteVideoTags(models.Model):
     class Meta:
         db_table = 'm_favorite_video_tags'
 
-# ユーザ情報
-class MUsers(models.Model):
-    name = models.CharField(max_length=20)
-    password = models.CharField(max_length=255)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+# ユーザ情報（使用しない）
+# class MUsers(models.Model):
+#     name = models.CharField(max_length=20)
+#     password = models.CharField(max_length=255)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
 
-    class Meta:
-        db_table = 'm_users'
+#     class Meta:
+#         db_table = 'm_users'
 
 class TFavoriteVtubers(models.Model):
-    user = models.ForeignKey('MUsers', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     vtuber = models.ForeignKey('MVtubers', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -84,7 +85,7 @@ class TFavoriteVtubers(models.Model):
         unique_together = [['user', 'vtuber']]
 
 class TFavoriteVideos(models.Model):
-    user = models.ForeignKey('MUsers', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     vtuber = models.ForeignKey('MVtubers', on_delete=models.CASCADE)
     video_url = models.CharField(max_length=50)
     tag1 = models.ForeignKey('MFavoriteVideoTags', related_name='tag1_videos', on_delete=models.CASCADE, blank=True, null=True)

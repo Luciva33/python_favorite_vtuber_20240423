@@ -1,0 +1,49 @@
+{% extends 'base_login.html' %}
+{% load static %}
+
+{% block title %}
+<title>お気に入りVtuber登録確認 | Favorite Vtuber</title>
+{% endblock title %}
+
+{% block cutomcss %}
+<link rel="stylesheet" href="{% static '/css/register-character-confirm.css' %}">
+{% endblock cutomcss %}
+
+{% block content %}
+
+<body class="text-center">
+    <div class="container">
+        <h1 class="h3 mb-3 font-weight-normal">お気に入りVtuber登録確認</h1>
+        <form method="POST">{% csrf_token %}
+            <table class="table">
+                <tr>
+                    <td colspan="2"><img src="{% static '/images/' %}{{ mVtuber.thumbnail_filename }}"></td>
+                </tr>
+                <tr>
+                    <th>事務所</th>
+                    <td>ホロライブ</td>
+                </tr>
+                <tr>
+                    <th>名前</th>
+                    <td>{{ mVtuber.name_ja }}{% if mVtuber.name_en %}（{{ mVtuber.name_en }}）{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>ユニット</th>
+                    <td>{{ mVtuber.tag1.tag_name }}{% if mVtuber.tag2 %}、{{ mVtuber.tag2.tag_name }}{% endif %}</td>
+                </tr>
+            </table>
+
+            <div class="btn-toolbar d-flex justify-content-center" role="toolbar"
+                aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <a href="{% url 'register-character' %}" class="btn btn-secondary">戻る</a>
+                </div>
+                <div class="btn-group" role="group" aria-label="Second group">
+                    <button class="btn btn-primary" type="submit">登録</button>
+                </div>
+            </div>
+            <input type="hidden" name="mVtuberId" value="{{ mVtuber.id }}">
+        </form>
+    </div>
+</body>
+{% endblock content %}

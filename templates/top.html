@@ -1,0 +1,35 @@
+{% extends 'base_login.html' %}
+{% load static %}
+
+{% block title %}
+<title>トップ | Favorite Vtuber</title>
+{% endblock title %}
+
+{% block cutomcss %}
+<link rel="stylesheet" href="{% static '/css/top.css' %}">
+{% endblock cutomcss %}
+
+{% block content %}
+
+<body class="text-center">
+    <div class="container">
+        <h1 class="h3 mb-3 font-weight-normal">Favorite Vtuber</h1>
+        {% if tFavoriteVtubers %}
+        <ul class="vt_list">
+            {% for mVtuber in tFavoriteVtubers %}
+            <li>
+                <a href="{% url 'detail-character' mVtuber.pk %}">
+                    <span class="img_wrap"><img
+                            src="{% static '/images/' %}{{ mVtuber.vtuber.thumbnail_filename }}"></span>
+                    <span class="vt_name_ja">{{ mVtuber.vtuber.name_ja }}</span>
+                    <span class="vt_name_en">{{ mVtuber.vtuber.name_en }}</span>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>お気に入りVtuberが登録されていません。</p>
+        {% endif %}
+    </div>
+</body>
+{% endblock content %}
