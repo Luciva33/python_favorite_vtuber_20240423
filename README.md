@@ -26,6 +26,8 @@ $ virtualenv appenv
 
 $ source appenv/Scripts/activate
 
+$ pip install django
+
 # http://127.0.0.1:8000のサーバが立ち上がれば成功
 $ python manage.py runserver
 ```
