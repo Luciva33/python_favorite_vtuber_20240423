@@ -18,7 +18,7 @@
         <ul class="vt_list">
             {% for mVtuber in tFavoriteVtubers %}
             <li>
-                <a href="{% url 'detail-character' mVtuber.pk %}">
+                <a href="{% url 'detail-character' mVtuber.vtuber.pk %}">
                     <span class="img_wrap"><img
                             src="{% static '/images/' %}{{ mVtuber.vtuber.thumbnail_filename }}"></span>
                     <span class="vt_name_ja">{{ mVtuber.vtuber.name_ja }}</span>

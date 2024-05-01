@@ -14,27 +14,64 @@
 <body class="text-center">
     <div class="container">
         <h1 class="h3 mb-3 font-weight-normal">お気に入りVtuber詳細</h1>
-        <table class="table">
-            <tr>
-                <td colspan="2"><img src="{% static '/images/' %}{{ mVtuber.thumbnail_filename }}"></td>
-            </tr>
-            <tr>
-                <th>事務所</th>
-                <td>ホロライブ</td>
-            </tr>
-            <tr>
-                <th>名前</th>
-                <td>{{ mVtuber.name_ja }}{% if mVtuber.name_en %}（{{ mVtuber.name_en }}）{% endif %}</td>
-            </tr>
-            <tr>
-                <th>ユニット</th>
-                <td>{{ mVtuber.tag1.tag_name }}{% if mVtuber.tag2 %}、{{ mVtuber.tag2.tag_name }}{% endif %}</td>
-            </tr>
-        </table>
+        <div class="charmain">
+            <p class="charmain_img"><img src="{% static '/images/' %}{{ mVtuber.vtuber.image_filename }}"></p>
+            <div class="charmain_text">
+                <p class="charmain_name_ja">{{ mVtuber.vtuber.name_ja }}</p>
+                {% if mVtuber.vtuber.name_en %}
+                <p class="charmain_name_en">{{ mVtuber.vtuber.name_en }}</p>
+                {% endif %}
+
+                {% if mVtuber.vtuber.catch_text %}
+                <p class="charmain_catch">{{ mVtuber.vtuber.catch_text }}</p>
+                {% endif %}
+
+                {% if mVtuber.vtuber.introduction_video_url %}
+                {% if is_video %}
+                <video width="100%" controls autoplay loop>
+                    <source src="{{ mVtuber.vtuber.introduction_video_url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                {% else %}
+                <img width="100%" src="{{ mVtuber.vtuber.introduction_video_url }}" alt="Vtuber Introduction Video">
+                {% endif %}
+                {% endif %}
+
+                <div class="btn-toolbar d-flex justify-content-center mt-4" role="toolbar"
+                    aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a href="{{ mVtuber.vtuber.youtube_url }}" class="btn btn-success" target="_blank">Youtube</a>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Second group">
+                        <a href="{{ mVtuber.vtuber.twitter_url }}" class="btn btn-info" target="_blank">Twitter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="recommended_videos">
+            <h2 class="h3 mb-3 font-weight-normal">Recommended Videos</h2>
+            <ul class="recommended_video_list">
+                {% if mVtuber.vtuber.recommended_video1 %}
+                <li>
+                    <a href="https://www.youtube.com/watch?v=NT6Pf28eCgQ" target="_blank">
+                        <!-- <img src="https://img.youtube.com/vi/NT6Pf28eCgQ/maxresdefault.jpg" alt="Video 1 Thumbnail"> -->
+                    </a>
+                </li>
+                {% endif %}
+                {% if mVtuber.vtuber.recommended_video2 %}
+                <li><iframe src="{{ mVtuber.vtuber.recommended_video2 }}" frameborder="0" allowfullscreen></iframe>
+                </li>
+                {% endif %}
+                {% if mVtuber.vtuber.recommended_video3 %}
+                <li><iframe src="{{ mVtuber.vtuber.recommended_video3 }}" frameborder="0" allowfullscreen></iframe>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
 
         <div class="btn-toolbar d-flex justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
             <div class="btn-group mr-2" role="group" aria-label="First group">
-                <a href="{% url 'top' %}" class="btn btn-secondary">戻る</a>
+                <a href="{% url 'top' %}" class="btn btn-secondary">トップへ</a>
             </div>
         </div>
     </div>

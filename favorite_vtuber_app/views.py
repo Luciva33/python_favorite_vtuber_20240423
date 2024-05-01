@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
@@ -47,11 +48,26 @@ def topfunc(request):
     tFavoriteVtubers = TFavoriteVtubers.objects.filter(user=request.user)
     return render(request, 'top.html', {'tFavoriteVtubers' : tFavoriteVtubers})
 
+# お気に入りキャラ詳細
 @login_required
 def detailCharacterfunc(request, pk):
     vtuber_instance = MVtubers.objects.get(id = pk)
     mVtuber = get_object_or_404(TFavoriteVtubers, user=request.user, vtuber=vtuber_instance)
-    return render(request, 'detail-character.html', {'mVtuber' : mVtuber})
+
+    # mp4かgifか判定
+    introduction_video_url = mVtuber.vtuber.introduction_video_url
+    is_video = False
+    if introduction_video_url and introduction_video_url.endswith('.mp4'):
+        is_video = True
+
+    # 動画のサムネイル取得
+    video_urls = [
+        mVtuber.vtuber.recommended_video1,
+        mVtuber.vtuber.recommended_video2,
+        mVtuber.vtuber.recommended_video3
+    ]
+
+    return render(request, 'detail-character.html', {'mVtuber' : mVtuber, 'is_video': is_video})
 
 # お気に入りキャラ登録
 @login_required
